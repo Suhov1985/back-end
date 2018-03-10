@@ -25,11 +25,15 @@ function findWord($files, $word)
 	return array_filter($files);
 }
 
+$message = "Вы не ввели искомое слово";
 if ($_POST) {
 	$path = requestPost('path'); // strlen
 	$word = requestPost('word'); // strlen
 	$files = scandir($path);
 	$files = findWord($files, $word);
+	if ($files){
+		$message = "Файлы котрые содержат искомое слово";
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -49,6 +53,7 @@ if ($_POST) {
 	<button type='submit'>Go</button>
 </form>
 <br>
+<?=$message?>
 <ul>
 	<?php foreach($files as $file): ?>
 		<li><?=$file?></li>
