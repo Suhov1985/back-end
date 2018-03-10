@@ -6,7 +6,7 @@ function removeWords(&$words, $count)
 {
 	for($i = 0; $i < count($words); $i++)
 	{
-		if(strlen($words[$i]) > $count)
+		if(iconv_strlen($words[$i]) > $count)
 		{
 			$words[$i] = 0;
 		}
@@ -34,11 +34,10 @@ function getWords($string)
 
 	return array_filter($words);
 }
-
+$word = "";
 if ($_POST) {
 	$col = requestPost('col'); // strlen
 	$word = implode(" ", removeWords($words, $col));
-//	var_dump($col);
 }
 ?>
 <!DOCTYPE html>
